@@ -27,7 +27,17 @@ namespace SpotSharp
         public Image AlbumArt()
         {
             var bits = Get("/playing.png").RawBytes;
+            if (bits == null) return ServerDownImage();
             return Image.FromStream(new MemoryStream(bits));
+        }
+
+        Image ServerDownImage()
+        {
+            var img = new Bitmap(300, 300);
+            var g = Graphics.FromImage(img);
+            g.Clear(Color.Red);
+            g.DrawString("Server not found.", new Font("Arial", 14, GraphicsUnit.Pixel),Brushes.LightYellow,new RectangleF(0,0,300,300), new StringFormat(){Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center});
+            return img;
         }
 
         public string Find(string songName)

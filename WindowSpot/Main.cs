@@ -37,17 +37,19 @@ namespace WindowSpot
         void Sync()
         {
             if (bgw.IsBusy)
-            {
-                MessageBox.Show("It's busy!");
                 return;
-            }
+
            bgw.RunWorkerAsync();
         }
 
         private void SetupClicked(object sender, EventArgs e)
         {
+            HorriblePollingTimer.Stop();
             var setup = new Setup();
-            setup.ShowDialog(this);
+            if (setup.ShowDialog(this) == DialogResult.OK)
+                Connect();
+
+            HorriblePollingTimer.Start();
         }
 
         private void VolumeChanged(object sender, EventArgs e)
@@ -92,7 +94,7 @@ namespace WindowSpot
                 {
                     Playing = _spot.Playing(),
                     Image = _spot.AlbumArt(),
-                    Volume = Convert.ToInt16(_spot.Volume())
+                    Volume = string.IsNullOrEmpty(_spot.Volume()) ? 0 : Convert.ToInt16(_spot.Volume())
                 };
             e.Result = state;
         }

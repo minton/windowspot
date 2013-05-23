@@ -19,8 +19,10 @@ namespace WindowSpot
 
         private void SaveClicked(object sender, EventArgs e)
         {
+            DialogResult = DialogResult.OK;
             Properties.Settings.Default.Host = txtHost.Text;
             Properties.Settings.Default.Save();
+            Close();
         }
 
         private void Setup_Load(object sender, EventArgs e)
