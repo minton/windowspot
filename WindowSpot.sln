@@ -7,7 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotSharp", "SpotSharp\Spot
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpotSharp.Tests", "SpotSharp.Tests\SpotSharp.Tests.csproj", "{8366037D-DEB4-40C7-B3C7-20E0C139A260}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowSpot.Tests", "WindowSpot.Tests\WindowSpot.Tests.csproj", "{216A50FF-A7CA-42C0-B54F-F1EDB8251A5B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FECF55CD-4F06-4509-BD30-866E6669B3CC}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,10 +32,6 @@ Global
 		{8366037D-DEB4-40C7-B3C7-20E0C139A260}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8366037D-DEB4-40C7-B3C7-20E0C139A260}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8366037D-DEB4-40C7-B3C7-20E0C139A260}.Release|Any CPU.Build.0 = Release|Any CPU
-		{216A50FF-A7CA-42C0-B54F-F1EDB8251A5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{216A50FF-A7CA-42C0-B54F-F1EDB8251A5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{216A50FF-A7CA-42C0-B54F-F1EDB8251A5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{216A50FF-A7CA-42C0-B54F-F1EDB8251A5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
