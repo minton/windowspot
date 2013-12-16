@@ -32,6 +32,8 @@
             this.txtHost = new System.Windows.Forms.TextBox();
             this.btnTest = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.cboxSnapToEdge = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -50,12 +52,12 @@
             this.txtHost.Location = new System.Drawing.Point(24, 45);
             this.txtHost.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtHost.Name = "txtHost";
-            this.txtHost.Size = new System.Drawing.Size(498, 22);
+            this.txtHost.Size = new System.Drawing.Size(298, 22);
             this.txtHost.TabIndex = 0;
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(529, 39);
+            this.btnTest.Location = new System.Drawing.Point(340, 34);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(75, 33);
             this.btnTest.TabIndex = 1;
@@ -65,19 +67,41 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(610, 39);
+            this.btnSave.Location = new System.Drawing.Point(258, 244);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 33);
             this.btnSave.TabIndex = 2;
-            this.btnSave.Text = "Save";
+            this.btnSave.Text = "OK";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.SaveClicked);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(340, 244);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 33);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Cancel";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // cboxSnapToEdge
+            // 
+            this.cboxSnapToEdge.AutoSize = true;
+            this.cboxSnapToEdge.Location = new System.Drawing.Point(24, 84);
+            this.cboxSnapToEdge.Name = "cboxSnapToEdge";
+            this.cboxSnapToEdge.Size = new System.Drawing.Size(208, 24);
+            this.cboxSnapToEdge.TabIndex = 4;
+            this.cboxSnapToEdge.Text = "Snap to the Screen Edge";
+            this.cboxSnapToEdge.UseVisualStyleBackColor = true;
             // 
             // Setup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 101);
+            this.ClientSize = new System.Drawing.Size(436, 296);
+            this.Controls.Add(this.cboxSnapToEdge);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnTest);
             this.Controls.Add(this.txtHost);
@@ -98,5 +122,7 @@
         private System.Windows.Forms.TextBox txtHost;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox cboxSnapToEdge;
     }
 }
