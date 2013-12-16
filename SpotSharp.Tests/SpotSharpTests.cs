@@ -6,7 +6,7 @@ namespace SpotSharp.Tests
     [TestClass]
     public class SpotSharpTests
     {
-        const string Host = "http://192.168.3.174:5051";
+        const string Host = "http://192.168.3.175:5051";
         readonly SpotClient _spot = new SpotClient(Host);
 
         [TestMethod]

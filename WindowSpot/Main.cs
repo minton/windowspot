@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SpotSharp;
+using System.Runtime.InteropServices;
 using Timer = System.Threading.Timer;
 
 namespace WindowSpot
@@ -10,6 +11,8 @@ namespace WindowSpot
     public partial class Main : Form
     {
         SpotClient _spot;
+        private const int SnapInDistance = 50;
+
 
         public Main()
         {
@@ -74,7 +77,7 @@ namespace WindowSpot
 
         private void BackClicked(object sender, EventArgs e)
         {
-            _spot.Back();
+               _spot.Back();
         }
 
         private void SayIt(object sender, KeyEventArgs e)
@@ -111,6 +114,66 @@ namespace WindowSpot
         {
             Sync();
         }
+
+
+        public struct WindowPos
+        {
+            public IntPtr hwnd;
+            public IntPtr hwndInsertAfter;
+            public int x;
+            public int y;
+            public int cx;
+            public int cy;
+            public uint flags;
+        }
+
+        private const int WM_WINDOWPOSCHANGING = 0x46;
+
+        protected override void WndProc(ref Message m)
+        {
+            bool Snapped = false;
+            if ((m.Msg == WM_WINDOWPOSCHANGING) && (Properties.Settings.Default.SnapToEdge))
+                {
+                 Screen scn = Screen.FromPoint(this.Location);
+                WindowPos mwp;
+                mwp = (WindowPos)Marshal.PtrToStructure(m.LParam, typeof(WindowPos));
+                if (mwp.x != 0)
+                {
+                    // Left
+                    if (mwp.x <= (scn.WorkingArea.Left + SnapInDistance))
+                    {
+                        mwp.x = scn.WorkingArea.Left;
+                        Snapped = true;
+                    }
+                    // Right
+                    if ((mwp.x + mwp.cx) >= (scn.WorkingArea.Right - SnapInDistance))
+                    {
+                        mwp.x = scn.WorkingArea.Right - mwp.cx;
+                        Snapped = true;
+                    }
+                    // Top
+                    if (mwp.y <= (scn.WorkingArea.Top + SnapInDistance))
+                    {
+                        mwp.y = scn.WorkingArea.Top;
+                        Snapped = true;
+                    }
+                    // Bottom
+                    if ((mwp.y + mwp.cy) >= (scn.WorkingArea.Bottom - SnapInDistance))
+                    {
+                        mwp.y = scn.WorkingArea.Bottom - mwp.cy;
+                        Snapped = true;
+                    }
+                    // Keep from moving off the screen
+                    if (mwp.x < scn.WorkingArea.Left) mwp.x = scn.WorkingArea.Left;
+                    if ((mwp.x + mwp.cx) > scn.WorkingArea.Right) mwp.x = scn.WorkingArea.Right - mwp.cx;
+                    if (mwp.y < scn.WorkingArea.Top) mwp.y = scn.WorkingArea.Top;
+                    if ((mwp.y + mwp.cy) > scn.WorkingArea.Bottom) mwp.y = scn.WorkingArea.Bottom - mwp.cy;
+                    Marshal.StructureToPtr(mwp, (IntPtr)m.LParam,false);
+                }
+                m.Result = (IntPtr)0;
+                }
+            base.WndProc(ref m);
+            }
     }
 
     internal class SpotState

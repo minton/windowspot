@@ -27,7 +27,8 @@ namespace SpotSharp
         public Image AlbumArt()
         {
             var bits = Get("/playing.png").RawBytes;
-            if (bits == null) return ServerDownImage();
+            if (bits == null || bits.Length<10) 
+                return ServerDownImage();
             return Image.FromStream(new MemoryStream(bits));
         }
 

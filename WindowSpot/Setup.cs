@@ -21,6 +21,7 @@ namespace WindowSpot
         {
             DialogResult = DialogResult.OK;
             Properties.Settings.Default.Host = txtHost.Text;
+            Properties.Settings.Default.SnapToEdge = cboxSnapToEdge.Checked;
             Properties.Settings.Default.Save();
             Close();
         }
@@ -28,6 +29,13 @@ namespace WindowSpot
         private void Setup_Load(object sender, EventArgs e)
         {
             txtHost.Text = Properties.Settings.Default.Host;
+            cboxSnapToEdge.Checked = Properties.Settings.Default.SnapToEdge;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }
